@@ -1,0 +1,86 @@
+{% extends 'mainapp/base.html' %}
+{% load staticfiles %}
+
+    {% block content %}
+                <div class="contentHeader newProductsHeader">
+                    Заполни анкету
+                </div>
+                    <div class="containerText">
+                        <p><b>Прежде чем заполнять <i>анкету</i>, прочтите, пожалуйста, требования к кандидатам в контролеры -распорядители:</b></p>
+                       <p>Кандидат на должность контролера-распорядителя должен соответствовать требованиям, установленным частью 2 статьи 20.2 Федерального закона «О физической культуре и спорте в Российской Федерации» и не может быть: <br>
+                        <ul>
+                        <li> лицом, не имеющим гражданства Российской Федерации; </li>
+                        <li> гражданином Российской Федерации, признанным вступившим в законную силу решением суда недееспособным, ограниченно дееспособным;</li>
+                        <li> гражданином Российской Федерации, не достигшим возраста восемнадцати лет; </li>
+                        <li> лицом, имеющим неснятую и непогашенную судимость, а также лицом, привлекавшимся к административной ответственности за административные правонарушения, предусмотренные статьей 20.31 Кодекса Российской Федерации об административных правонарушениях, в течение срока, во время которого он считается подвергнутыми административному наказанию; </li>
+                        <li> лицом, состоящим на учете в организациях органов здравоохранения по поводу психического заболевания, алкоголизма, наркомании или токсикомании.</li>
+                        </ul>
+                        </p><br>
+                </div>
+                <div class="contentHeader newProductsHeader" id="anketa">
+                            Анкета
+                </div>
+                    <div class="containerText">
+                        <p><b>Скачиваем, заполняем <i>анкету</i> и отправляем ее нам на почту <a href="mailto:hr@стюарды.рф">hr@стюарды.рф</a>!</b></p>
+                    </div>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-6 productUnitCol">
+                                <div class="productUnit">
+                                    <div class="productCornerNew">xlsx</div>
+                                    <a href="/static/pdf/anketa_2019.xlsx" target="_blank"><img class="productImg" src="{% static 'images/stewardsLogo.png' %}" alt="Анкета для заполнения"></a>
+                                    <div class="nameAndPriceWrap">
+                                        <div class="productName">
+                                            Анкета для заполнения
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-0 col-md-12 productUnitCol">
+                        <form action="{% url 'questions:questions' %}" method="post" class="">
+                            {% csrf_token %}
+<!--                            <input type="hidden" name="_token" value="4KH1atxl9qrL3lNGa9CnutVYRSeXs9kv0sjZP4Iy">-->
+<!--                            <input name="subject" type="hidden" value="index">-->
+                            <div class="form-group">
+                                <label for="full_name">Фамилия, Имя:</label>
+                                <input name="full_name" type="text" value="{{full_name}}" class="form-control inpot" id="name" required="" placeholder="">
+                            </div>
+                            <div class="form-group">
+                                <label for="sender">E-mail:</label>
+                                <input name="sender" type="text" value="{{sender}}" class="form-control inpot" id="sender" required="" placeholder="">
+                            </div>
+                            <div class="form-group">
+                                <label for="age">Возраст:</label>
+                                <input name="age" type="number" value="{{age}}" class="form-control" id="age" min="18" max="60" placeholder="Для соискателей  старше 18 лет" required="">
+                            </div>
+                            <div class="form-group">
+                                <label for="phone_number">Номер телефона</label>
+                                <input name="phone_number" value="{{phone_number}}" type="tel" class="form-control" id="phone_number" required="">
+                            </div>
+                            <div class="form-group">
+                                <label for="city">Город проживания:</label>
+                                <input name="city" value="{{city}}" type="text" class="form-control" id="city" required="">
+                            </div>
+<!--                            <div class="form-group">-->
+<!--                                <label for="additionally">Дополнительная информация о себе (кратко):</label>-->
+<!--                                <textarea name="about" type="textarea" class="form-control" id="additionally" maxlength="160" rows="2" cols="100"></textarea>-->
+<!--                            </div>-->
+<!--                            <div class="form-group">-->
+<!--                                <label class="custom-control custom-checkbox">-->
+<!--                                    <input type="checkbox" class="custom-control-input" required="">-->
+<!--                                    <span class="custom-control-indicator mt-lg-1"></span>-->
+<!--                                    <span class="custom-control-description">*Согласен на обработку своих персональных данных:</a></span>-->
+<!--                                </label>-->
+<!--                            </div>-->
+                            <div class="d-flex justify-content-center">
+                                <button class="btn btn-danger form-sub" type="submit" id="go">ОТПРАВИТЬ</button>
+                            </div>
+                        </form>
+
+
+                    </div>
+                </div>
+    {% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'mainapp/base.html' %}
+{% load staticfiles %}
+
+
+    {% block content %}
+        <div class="contentHeader newProductsHeader">
+                    Нормативные документы
+        </div>
+            <div class="row">
+            {% for document in documents %}
+                <div class="col-lg-6 col-md-8 productUnitCol">
+                    <div class="productUnit">
+                        <div class="productCornerNew">new</div>
+                        <a href="/media/{{ document.file }}" target="_blank"><img class="productImg" src="/static/images/stewardsLogo.png" alt="{{ document.short_desc }}"></a>
+                        <div class="nameAndPriceWrap">
+                            <div class="productName">
+                                Lorem ipsum dolor sit. {{ document.name }}
+                            </div>
+                            <div class="productPriceWrap">
+                                <div class="actualPrice">
+                                    {{ document.description }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endblock %}

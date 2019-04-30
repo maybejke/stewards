@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>
+        {% block title%}
+            {{ title|capfirst }}
+        {% endblock %}
+    </title>
+    {% block css %}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'style/bootstrap-3.3.7-dist/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'style/style.css' %}">
+    {% endblock %}
+    {% block js %}
+        <script src="{% static 'js/jquery/jquery-1.12.4.min.js' %} "></script>
+        <script src="{% static 'style/bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>
+
+    {% endblock %}
+</head>
+<body>
+    {% block header %}
+        <div class="header">
+            <div class="container">
+                <nav class="navbar navbar-default xsNavBar visible-xs">
+                    <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                          </button>
+                          <a class="navbar-brand xsLogo" href="{% url 'index' %}">Steward</a>
+                        </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                          <ul class="nav navbar-nav">
+                            {% include 'mainapp/includes/inc_menu.html' %}
+                          </ul>
+                        </div>
+                    </div><!-- /.container-fluid -->
+                </nav>
+                <a href="{% url 'index' %}" class="logo hidden-xs"></a>
+                <div class="welcomeWrap">
+                    <div class="welcome">
+                        Добро пожаловать в стюарды
+                    </div>
+                    <div class="welcomeText">
+                        Ни одно мероприятие не проходит
+                        без нашего участия,
+                        стань и ты частью нашей команды
+                    </div>
+                </div>
+                <div class="funrideWrap">
+                    <div class="funrideHead">
+                            Сезон <br>
+                            2018-2019
+                    </div>
+                    <div class="funrideText">
+                            Вы побывайте на удивительных событиях<br>
+                            от мачтей лиги чемпионов<br>
+                            до концертов звезд, найдете новых друзей<br>
+                            и станете частью прекрасной команды
+                    </div>
+                    <a class="funrideButton" href="{% url 'questions:questions' %}"> Заполнить анкету </a>
+                </div>
+                <div class="socialIconsWrap">
+                    <a href="https://www.facebook.com/stewards.rus.73" target="_blank">
+                        <i class="fa fa-facebook-f fa-lg"></i>
+                    </a>
+                    <a href="https://vk.com/stewards_rus" target="_blank">
+                        <i class="fa fa-vkontakte fa-vk"></i>
+                    </a>
+                    <a href="#">
+                        <i class="fa fa-youtube fa-lg"></i>
+                    </a>
+                    <a href="mailto:hr@стюарды.рф" target="_blank">
+                        <i class="fa fa-mail fa-lg"></i>
+                    </a>
+                    <a href="https://www.instagram.com/stewards_rus/?utm_source=ig_profile_share&igshid=1fq2d9rtvpolp" target="_blank">
+                        <i class="fa fa-instagram fa-lg"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+    <div class="container content">
+        <div class="row">
+             <div class="col-lg-3 col-sm-4">
+                <ul class="hidden-xs mainMenu">
+                    {% include 'mainapp/includes/inc_menu.html' %}
+                </ul>
+                <!--<div class="nowIsOpen">-->
+                    <!--<div class="nowIsOpenInside">-->
+                        <!--<span>-->
+                            <!--Скоро<br>-->
+                            <!--это<br>-->
+                            <!--будет!-->
+                        <!--</span>-->
+                    <!--</div>-->
+                <!--</div>-->
+            </div>
+            <div class="col-lg-9 col-md-8 col-sm-8 ">
+            {% block content %}
+
+            {% endblock %}
+            </div>
+
+        </div>
+    </div>
+    {% block sponsor %}
+        <div class="row">
+            <div class="container-fluid">
+                <div id="brand1" class="brands">
+                    <a href="http://www.rfs.ru/" target="_blank"> <img src="{% static 'images/brands/rfs.png' %}" alt="rfs"> </a>
+                    <a href="https://premierliga.ru/" target="_blank"><img src="{% static 'images/brands/rpl.png' %}" alt="rpl"></a>
+                    <a href="https://www.fclm.ru/ru/" target="_blank"><img src="{% static 'images/brands/loko.png' %}" alt=""></a>
+                    <a href="http://fckazanka.ru/" target="_blank"><img src="{% static 'images/brands/kazanka_0.png' %}" alt="kazanka"></a>
+                    <a href="https://ponominalu.ru/" target="_blank"><img class="hidden-md" src="{% static 'images/brands/logo-ponominalu.png' %}" alt="ponominalu"></a>
+                    <a href="http://stadion-spartakovets.ru/" target="_blank"><img src="{% static 'images/brands/httpstadion_spartakovetsru.png' %}" alt="Стадион Спартаковец"></a>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+
+    {% block footer %}
+        <div class="instagramFeedWrap">
+            <div class="instaFeedHead">
+                <i class="fa fa-instagram"></i>
+                <span>Instagram feed:</span> #стюардыРФ
+            </div>
+                <div class="instaFeedImages">
+                    <img src="{% static 'images/instaFeed/1.jpg' %}" alt="">
+                    <img src="{% static 'images/instaFeed/2.jpg' %}" alt="">
+                    <img src="{% static 'images/instaFeed/3.jpg' %}" alt="">
+                    <img src="{% static 'images/instaFeed/4.jpg' %}" alt="">
+                    <img src="{% static 'images/instaFeed/5.jpg' %}" alt="">
+                </div>
+            </div>
+            <div class="socialButtonsWrap">
+                <a href="https://www.facebook.com/stewards.rus.73" target="_blank">
+                    <i class="fa fa-facebook"></i>
+                </a>
+                <a href="https://vk.com/stewards_rus" target="_blank">
+                    <i class="fa fa-vk"></i>
+                </a>
+                <a href="https://www.instagram.com/stewards_rus/?utm_source=ig_profile_share&igshid=1fq2d9rtvpolp" target="_blank">
+                    <i class="fa fa-instagram"></i>
+                </a>
+            </div>
+            <div class="footer">
+                <div class="container footerInside">
+                    <div class="footerColumn">
+                        <div class="columnHead">
+                            Категории
+                        </div>
+                        <div class="columnLinks">
+                            {% include 'mainapp/includes/inc_mini_menu.html' %}
+                        </div>
+                    </div>
+                    <div class="footerColumn about">
+                        <div class="columnHead">
+                            О нас
+                        </div>
+                        <div class="columnAboutUs">
+                            <div class="aboutText">
+                                Мы всегда на связи!
+                                По вопросам трудоустройства просим обращаться
+                                с 12:00 по 18:00 по телефонам:
+                            </div>
+                            <div class="aboutPhone">
+                                <span>Phone:</span> 8-925-898-47-85 <br>
+                                <span>Phone:</span> 8-967-010-65-31 <br>
+                                <span>Phone:</span> 8-499-343-68-53
+                            </div>
+                            <div class="aboutEmail">
+                                <span>E-mail:</span> hr@стюарды.рф
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <div class="footerCopyrights">
+            <div class="container copyrightsInside">
+                <div class="footerCopySign">
+                    &copy; 2018  Стюарды.рф All rights reserved <span class="hidden-xs"></span><br class="visible-xs">
+                </div>
+                <div class="footerSocials">
+                    <i class="fa fa-facebook"></i>
+                    <i class="fa fa-vk"></i>
+                    <i class="fa fa-mail"></i>
+                    <i class="fa fa-instagram"></i>
+                    <i class="fa fa-feed"></i>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+
+</body>
+</html>

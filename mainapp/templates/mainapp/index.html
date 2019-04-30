@@ -1,0 +1,57 @@
+{% extends 'mainapp/base.html' %}
+{% load staticfiles %}
+
+    {% block content %}
+        <div class="containerText">
+            		<div class="contentHeader newProductsHeader">
+                    Приветствуем!
+                	</div>
+                   <p class="containerText">
+                   		<b>Здравствуйте!</b> Мы рады приветствовать Вас на нашем сайте! <br><br>
+                           На любом мероприятии <strong> контролеры-распорядители </strong>
+                           первыелюди, с которыми непосредственно общаются зрители.
+                           То впечатление, которое они создают своей ответственной
+                           работой, способно обеспечить общий успех каждого мероприятия.
+                           Мы гордимся качеством работы наших сотрудников, их обширным
+                           коммуникационным опытом и способностью оперативно решать конфликтные ситуации!
+  					</p>
+  					<p class="containerText">
+	  					<div class="contentHeader newProductsHeader contentHeaderTwo">
+	                    ПРЕИМУЩЕСТВА РАБОТЫ <strong>КОНТРОЛЕРОМ-РАСПОРЯДИТЕЛЕМ</strong>:
+	                	</div>
+	                    <ul>
+	                    <li> Возможность поработать на матчах и событиях высокого класса, которые будут проходить в городе Москва </li>
+	                    <li> Гарантированный дополнительный заработок </li>
+	                    <li> Возможность продвижения по карьерной лестнице - занять должность старшего распорядителя или начальника участка</li>
+	                    <li> Бесплатное обучение по программам РФС и FIFA </li>
+	                    <li> Получение организаторских и управленческих навыков</li>
+	                    <li> Удостоверение сертифицированного стюарда </li>
+	                    <li> Работа в приятном и молодом коллективе </li>
+	                    </ul>
+                    </p><br>
+                </div>
+                <div class="contentHeader newProductsHeader">
+                    Наши мероприятия
+                </div>
+                <div class="row">
+                    {% for event in events %}
+                        <div class="col-lg-4 col-md-6 productUnitCol">
+                            <div class="productUnit">
+                                <div class="productCornerNew">new</div>
+                                <img class="productImg" src="/media/{{ event.image }}" alt="{{ event.short_desc}}">
+                                <div class="nameAndPriceWrap">
+                                    <div class="productName">
+                                        Название мероприятия{{ event.name }}<br>
+                                    </div>
+                                    <div class="productPriceWrap">
+                                        <div class="actualPrice">
+                                            Время: {{ event.timeofevent }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                </div>
+    {% endblock %}

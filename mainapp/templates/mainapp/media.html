@@ -1,0 +1,28 @@
+{% extends 'mainapp/base.html' %}
+{% load staticfiles %}
+
+    {% block content %}
+        <div class="contentHeader newProductsHeader">
+            Медиа с мероприятий
+        </div>
+        <div class="row">
+            {% for event in events %}
+                    <div class="col-lg-6 col-md-8 productUnitCol">
+                        <div class="productUnit">
+                            <div class="productCornerNew">new</div>
+                            <img class="productImg" src="/media/{{ event.image }}" alt="{{ event.short_desc }}">
+                            <div class="nameAndPriceWrap">
+                                <div class="productName">
+                                    {{ event.name }}
+                                </div>
+                                <div class="productPriceWrap">
+                                    <div class="actualPrice">
+                                        12.11.2018
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            {% endfor %}
+        </div>
+    {% endblock %}
