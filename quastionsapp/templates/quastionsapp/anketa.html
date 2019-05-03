@@ -40,7 +40,8 @@
 
                 <div class="row">
                     <div class="col-lg-0 col-md-12 productUnitCol">
-                        <form action="{% url 'questions:questions' %}" method="post" class="">
+                        <form action="{% url 'questions:send_email' %}" method="post" class="">
+
                             {% csrf_token %}
 <!--                            <input type="hidden" name="_token" value="4KH1atxl9qrL3lNGa9CnutVYRSeXs9kv0sjZP4Iy">-->
 <!--                            <input name="subject" type="hidden" value="index">-->

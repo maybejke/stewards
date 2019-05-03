@@ -1,0 +1,67 @@
+diff --git a/quastionsapp/__pycache__/__init__.cpython-37.pyc b/quastionsapp/__pycache__/__init__.cpython-37.pyc
+index 646404e..669bc93 100644
+Binary files a/quastionsapp/__pycache__/__init__.cpython-37.pyc and b/quastionsapp/__pycache__/__init__.cpython-37.pyc differ
+diff --git a/quastionsapp/__pycache__/admin.cpython-37.pyc b/quastionsapp/__pycache__/admin.cpython-37.pyc
+index 43dd4ab..96f6f82 100644
+Binary files a/quastionsapp/__pycache__/admin.cpython-37.pyc and b/quastionsapp/__pycache__/admin.cpython-37.pyc differ
+diff --git a/quastionsapp/__pycache__/models.cpython-37.pyc b/quastionsapp/__pycache__/models.cpython-37.pyc
+index ab8351a..589267b 100644
+Binary files a/quastionsapp/__pycache__/models.cpython-37.pyc and b/quastionsapp/__pycache__/models.cpython-37.pyc differ
+diff --git a/quastionsapp/__pycache__/urls.cpython-37.pyc b/quastionsapp/__pycache__/urls.cpython-37.pyc
+index 09255ef..a5d827a 100644
+Binary files a/quastionsapp/__pycache__/urls.cpython-37.pyc and b/quastionsapp/__pycache__/urls.cpython-37.pyc differ
+diff --git a/quastionsapp/__pycache__/views.cpython-37.pyc b/quastionsapp/__pycache__/views.cpython-37.pyc
+index d5f4b13..10e0e08 100644
+Binary files a/quastionsapp/__pycache__/views.cpython-37.pyc and b/quastionsapp/__pycache__/views.cpython-37.pyc differ
+diff --git a/quastionsapp/migrations/__pycache__/0001_initial.cpython-37.pyc b/quastionsapp/migrations/__pycache__/0001_initial.cpython-37.pyc
+index e39c144..f2eb938 100644
+Binary files a/quastionsapp/migrations/__pycache__/0001_initial.cpython-37.pyc and b/quastionsapp/migrations/__pycache__/0001_initial.cpython-37.pyc differ
+diff --git a/quastionsapp/migrations/__pycache__/__init__.cpython-37.pyc b/quastionsapp/migrations/__pycache__/__init__.cpython-37.pyc
+index b02a80e..fa93497 100644
+Binary files a/quastionsapp/migrations/__pycache__/__init__.cpython-37.pyc and b/quastionsapp/migrations/__pycache__/__init__.cpython-37.pyc differ
+diff --git a/quastionsapp/templates/quastionsapp/anketa.html b/quastionsapp/templates/quastionsapp/anketa.html
+index 26a57c4..ffbecef 100644
+--- a/quastionsapp/templates/quastionsapp/anketa.html
++++ b/quastionsapp/templates/quastionsapp/anketa.html
+@@ -40,7 +40,7 @@
+ 
+                 <div class="row">
+                     <div class="col-lg-0 col-md-12 productUnitCol">
+-                        <form action="{% url 'questions:questions' %}" method="post" class="">
++                        <form action="{% url 'questions:send_email' %}" method="post" class="">
+                             {% csrf_token %}
+ <!--                            <input type="hidden" name="_token" value="4KH1atxl9qrL3lNGa9CnutVYRSeXs9kv0sjZP4Iy">-->
+ <!--                            <input name="subject" type="hidden" value="index">-->
+diff --git a/quastionsapp/urls.py b/quastionsapp/urls.py
+index 51db8ad..2a7e8bf 100644
+--- a/quastionsapp/urls.py
++++ b/quastionsapp/urls.py
+@@ -5,5 +5,6 @@ import quastionsapp.views as quastionsapp
+ app_name = 'quastionsapp'
+ 
+ urlpatterns = [
+-    path('', quastionsapp.questions, name='questions')
++    path('', quastionsapp.questions, name='questions'),
++    path('send_email/', quastionsapp.send_email, name='send_email'),
+ ]
+diff --git a/quastionsapp/views.py b/quastionsapp/views.py
+index 93d1cfe..297a518 100644
+--- a/quastionsapp/views.py
++++ b/quastionsapp/views.py
+@@ -25,7 +25,6 @@ class UserContactView(DetailView):
+     template_name = 'quastionsapp/anketa.html'
+ 
+ 
+-
+ def send_email(request):
+     subject = 'Anketa'
+     full_name = request.POST.get('full_name', '')
+@@ -38,7 +37,7 @@ def send_email(request):
+ 
+     if subject and message:
+         try:
+-            send_mail(subject, message, settings.EMAIL_HOST_USER, settings.EMAIL_HOST_USER, fail_silently=False)
++            send_mail(subject, message, settings.EMAIL_HOST_USER, [settings.EMAIL_HOST_USER], fail_silently=False)
+         except BadHeaderError:
+             return HttpResponse('Invalid header found.')
+         return HttpResponseRedirect('/contants/')

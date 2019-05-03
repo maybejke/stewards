@@ -38,7 +38,7 @@ def send_email(request):
 
     if subject and message:
         try:
-            send_mail(subject, message, settings.EMAIL_HOST_USER, settings.EMAIL_HOST_USER, fail_silently=False)
+            send_mail(subject, message, settings.EMAIL_HOST_USER, [settings.EMAIL_HOST_USER], fail_silently=False)
         except BadHeaderError:
             return HttpResponse('Invalid header found.')
         return HttpResponseRedirect('/contants/')

@@ -133,10 +133,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DOMAIN_NAME = 'http://localhost:8000'
 
 # Отправка на google
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'amrakitin@gmail.com'
-EMAIL_HOST_PASSWORD = '******'
+EMAIL_HOST = 'smtp.mail.ru'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'amrakitin@mail.com'
+EMAIL_HOST_PASSWORD = 'Lexa12345'
 EMAIL_USE_TLS = True
 # Отправка на yandex
 # EMAIL_HOST = 'smtp.yandex.ru'
